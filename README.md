@@ -35,7 +35,6 @@ This app aims to promote **mental health awareness**, **prevent workplace burnou
 - **UI:** Jetpack Compose  
 - **Architecture:** MVVM (ViewModel + StateFlow)  
 - **Animation:** Lottie for Android  
-- **Email Sending (optional):** Firebase / SMTP (integration point)  
 - **Navigation:** Explicit Intents
 
 ---

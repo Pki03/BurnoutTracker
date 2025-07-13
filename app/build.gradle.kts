@@ -42,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        mlModelBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion= "1.52" // or latest
@@ -60,7 +61,9 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2024.04.01"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3") // or material if not using M3
+    implementation("androidx.compose.material3:material3:1.2.1")
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
@@ -103,6 +106,9 @@ dependencies {
 
     implementation("androidx.compose.ui:ui-text-google-fonts:1.6.1")
 
+    implementation("org.tensorflow:tensorflow-lite:2.13.0")
+
+    implementation("com.airbnb.android:lottie-compose:6.1.0")
 
 
 

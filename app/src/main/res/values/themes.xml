@@ -1,5 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.BurnoutTracker" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- App theme -->
+    <style name="Theme.BurnoutTracker" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- You can add custom colors here if needed -->
+    </style>
+
+    <!-- Splash screen theme -->
+    <style name="Theme.BurnoutTracker.Splash" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Set plain background to avoid showing the green default icon -->
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
 </resources>

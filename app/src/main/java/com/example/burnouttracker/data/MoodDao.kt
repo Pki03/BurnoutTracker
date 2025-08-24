@@ -1,8 +1,9 @@
-package com.example.burnouttracker
+package com.example.burnouttracker.data
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.burnouttracker.data.MoodEntry
 import kotlinx.coroutines.flow.Flow
 
 @Dao

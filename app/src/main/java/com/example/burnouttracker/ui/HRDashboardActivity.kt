@@ -1,4 +1,4 @@
-package com.example.burnouttracker
+package com.example.burnouttracker.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -18,12 +18,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+// Activity class for HR Dashboard
 class HRDashboardActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme {
-                HRDashboardScreen()
+                HRDashboardScreen() // Compose function rendering the UI
             }
         }
     }
@@ -32,9 +33,9 @@ class HRDashboardActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HRDashboardScreen() {
-    val context = LocalContext.current
+    val context = LocalContext.current // Get Android context for launching intents
 
-    // HR/Counsellor list
+    // Predefined list of HRs and counsellors with their emails
     val hrList = mapOf(
         "Priya Sharma (HR)" to "priya.hr@example.com",
         "Rahul Mehta (HR)" to "rahul.hr@example.com",
@@ -42,9 +43,11 @@ fun HRDashboardScreen() {
         "Dr. Kabir Das (Counsellor)" to "kabir.counsellor@example.com"
     )
 
-    var expanded by remember { mutableStateOf(false) }
-    var selectedName by remember { mutableStateOf(hrList.keys.first()) }
+    // Dropdown state variables
+    var expanded by remember { mutableStateOf(false) } // Controls dropdown visibility
+    var selectedName by remember { mutableStateOf(hrList.keys.first()) } // Stores selected HR/Counsellor
 
+    // Scaffold provides basic layout structure with TopAppBar and content
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -55,39 +58,42 @@ fun HRDashboardScreen() {
                         color = Color.White
                     )
                 },
-                colors = centerAlignedTopAppBarColors(containerColor = Color(0xFFD32F2F))
+                colors = centerAlignedTopAppBarColors(containerColor = Color(0xFFD32F2F)) // Red color for top bar
             )
         },
-        containerColor = Color(0xFFFDECEA)
+        containerColor = Color(0xFFFDECEA) // Background color of screen
     ) { padding ->
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(16.dp),
+                .fillMaxSize() // Fill entire screen
+                .padding(padding) // Apply scaffold padding
+                .padding(16.dp), // Extra padding inside box
             contentAlignment = Alignment.TopCenter
         ) {
+            // Card to hold the alert message and dropdown
             Card(
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                elevation = CardDefaults.cardElevation(8.dp),
+                shape = RoundedCornerShape(16.dp), // Rounded corners
+                colors = CardDefaults.cardColors(containerColor = Color.White), // White background
+                elevation = CardDefaults.cardElevation(8.dp), // Shadow for elevation
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth() // Card takes full width
                     .padding(8.dp)
             ) {
                 Column(
                     modifier = Modifier.padding(24.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp), // Space between items
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    // Alert Title
                     Text(
                         text = "Attention Required",
                         style = MaterialTheme.typography.headlineSmall.copy(
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFFD32F2F)
+                            color = Color(0xFFD32F2F) // Red color for importance
                         )
                     )
 
+                    // Informative message
                     Text(
                         text = "You have been predicted as Unfit to Work 3 times in a row.",
                         fontSize = 18.sp,
@@ -100,11 +106,12 @@ fun HRDashboardScreen() {
                         color = Color.DarkGray
                     )
 
-                    // Dropdown to select HR/Counsellor
+                    // Dropdown menu to select HR/Counsellor
                     ExposedDropdownMenuBox(
-                        expanded = expanded,
-                        onExpandedChange = { expanded = !expanded }
+                        expanded = expanded, // Controls dropdown visibility
+                        onExpandedChange = { expanded = !expanded } // Toggle dropdown
                     ) {
+                        // Read-only text field showing selected name
                         OutlinedTextField(
                             readOnly = true,
                             value = selectedName,
@@ -114,20 +121,21 @@ fun HRDashboardScreen() {
                                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                             },
                             modifier = Modifier
-                                .menuAnchor()
+                                .menuAnchor() // Attach dropdown menu to this field
                                 .fillMaxWidth()
                         )
 
+                        // Dropdown menu with HR/Counsellor names
                         ExposedDropdownMenu(
                             expanded = expanded,
-                            onDismissRequest = { expanded = false }
+                            onDismissRequest = { expanded = false } // Close menu when clicked outside
                         ) {
                             hrList.keys.forEach { name ->
                                 DropdownMenuItem(
                                     text = { Text(name) },
                                     onClick = {
-                                        selectedName = name
-                                        expanded = false
+                                        selectedName = name // Update selected name
+                                        expanded = false // Close dropdown
                                     }
                                 )
                             }
@@ -138,13 +146,19 @@ fun HRDashboardScreen() {
                     Button(
                         onClick = {
                             val email = hrList[selectedName] ?: return@Button
+                            // Encode subject and body for email intent
                             val subject = Uri.encode("Burnout Alert: Employee Unfit to Work")
-                            val body = Uri.encode("Hi ${selectedName.split(" ")[0]},\n\nAn employee has been flagged unfit to work 3 times. Kindly reach out.\n\nRegards,\nBurnout Tracker")
+                            val body = Uri.encode(
+                                "Hi ${selectedName.split(" ")[0]},\n\n" +
+                                        "An employee has been flagged unfit to work 3 times. Kindly reach out.\n\n" +
+                                        "Regards,\nBurnout Tracker"
+                            )
+                            // Create mailto intent
                             val mailIntent = Intent(
                                 Intent.ACTION_VIEW,
                                 Uri.parse("mailto:$email?subject=$subject&body=$body")
                             )
-                            context.startActivity(mailIntent)
+                            context.startActivity(mailIntent) // Launch email app
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F)),
                         modifier = Modifier.fillMaxWidth()
@@ -152,7 +166,7 @@ fun HRDashboardScreen() {
                         Text("Email ${selectedName.split(" ")[0]}", color = Color.White)
                     }
 
-                    // Acknowledge Alert
+                    // Acknowledge Alert Button
                     OutlinedButton(
                         onClick = { /* logic for acknowledging alert */ },
                         modifier = Modifier.fillMaxWidth()

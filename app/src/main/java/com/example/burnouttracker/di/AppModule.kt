@@ -1,10 +1,10 @@
-package com.example.burnouttracker
+package com.example.burnouttracker.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.burnouttracker.MoodDatabase
-import com.example.burnouttracker.MoodDao
-import com.example.burnouttracker.MoodRepository
+import com.example.burnouttracker.data.MoodDao
+import com.example.burnouttracker.data.MoodDatabase
+import com.example.burnouttracker.data.MoodRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

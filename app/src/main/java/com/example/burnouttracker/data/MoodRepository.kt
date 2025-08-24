@@ -1,7 +1,6 @@
-package com.example.burnouttracker
+package com.example.burnouttracker.data
 
 import kotlinx.coroutines.flow.Flow
-
 
 class MoodRepository(private val dao: MoodDao) {
 

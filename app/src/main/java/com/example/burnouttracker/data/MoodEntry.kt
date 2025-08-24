@@ -1,4 +1,4 @@
-package com.example.burnouttracker
+package com.example.burnouttracker.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

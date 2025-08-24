@@ -16,24 +16,24 @@
 
         <!-- Launcher Activity (Splash) -->
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.BurnoutTracker.Splash">
+            android:theme="@style/Theme.BurnoutTracker">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- Main Mood Tracker Activity -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.BurnoutTracker" />
+<!--        &lt;!&ndash; Main Mood Tracker Activity &ndash;&gt;-->
+<!--        <activity-->
+<!--            android:name=".ui.MainActivity"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/Theme.BurnoutTracker" />-->
 
         <!-- HR Dashboard Activity -->
         <activity
-            android:name=".HRDashboardActivity"
+            android:name=".ui.HRDashboardActivity"
             android:exported="false"
             android:theme="@style/Theme.BurnoutTracker" />
 

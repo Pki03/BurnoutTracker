@@ -1,19 +1,13 @@
-package com.example.burnouttracker
+package com.example.burnouttracker.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.burnouttracker.ui.theme.BurnoutTrackerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,7 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BurnoutTrackerTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.Companion.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     MoodScreen()
@@ -34,5 +28,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-

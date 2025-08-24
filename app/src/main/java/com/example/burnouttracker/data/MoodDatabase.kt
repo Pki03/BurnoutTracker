@@ -1,9 +1,10 @@
-package com.example.burnouttracker
+package com.example.burnouttracker.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.burnouttracker.data.MoodEntry
 
 @Database(entities = [MoodEntry::class], version = 1)
 abstract class MoodDatabase : RoomDatabase(){

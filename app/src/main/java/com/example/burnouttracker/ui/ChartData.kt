@@ -1,4 +1,4 @@
-package com.example.burnouttracker
+package com.example.burnouttracker.ui
 
 data class ChartData(
     val label: String,
